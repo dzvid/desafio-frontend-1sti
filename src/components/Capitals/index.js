@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { IoMdRefresh } from 'react-icons/io';
+import { IoMdRefresh } from "react-icons/io";
 
-import { ErrorWrapper, ErrorMessage } from '../Errors';
+import { ErrorWrapper, ErrorMessage } from "../Errors";
 
-import { CapitalsResults, List, RetryButton } from './styles';
+import { CapitalsResults, List, RetryButton } from "./styles";
 
 const splitCapitals = capitalsList => {
   const halfwayThrough = Math.floor(capitalsList.length / 2);
 
   return [
     capitalsList.slice(0, halfwayThrough),
-    capitalsList.slice(halfwayThrough, capitalsList.length),
+    capitalsList.slice(halfwayThrough, capitalsList.length)
   ];
 };
 
@@ -25,23 +25,29 @@ function ListTitle() {
 }
 
 function ListItems({ halfCapitals }) {
-  return halfCapitals.map(capital => (
-    <li key={capital.id}>
-      <span>{`${Math.round(capital.main.temp_min)}°`}</span>
-      <span>{`${Math.round(capital.main.temp_max)}°`}</span>
-      <p>{capital.name}</p>
+  console.log(halfCapitals);
+  return halfCapitals.map((capital, index) => (
+    <li key={index}>
+      {capital.status === 200 ? (
+        <>
+          <span>{`${Math.round(capital.data.data[0].min_temp)}°`}</span>
+          <span>{`${Math.round(capital.data.data[0].max_temp)}°`}</span>
+        </>
+      ) : (
+        <>
+          <span>{`--`}</span>
+          <span>{`--`}</span>
+        </>
+      )}
+      <p>{capital.data.city_name}</p>
     </li>
   ));
 }
 
-function Capitals({ capitals, handleRetryButton }) {
-  const REQUEST_STATE = {
-    SUCCESS_LIST_RESULT: { code: 200 },
-  };
-
-  return capitals.status === REQUEST_STATE.SUCCESS_LIST_RESULT.code ? (
+function Capitals({ capitalsData, handleRetryButton }) {
+  return !capitalsData.error ? (
     <CapitalsResults>
-      {splitCapitals(capitals.data.list).map((halfCapitals, index) => (
+      {splitCapitals(capitalsData.capitals).map((halfCapitals, index) => (
         <List key={index}>
           <ListTitle />
           <ListItems halfCapitals={halfCapitals} />

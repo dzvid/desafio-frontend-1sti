@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { IoMdSearch } from 'react-icons/io';
+import { IoMdSearch } from "react-icons/io";
 
-import api from '../../services/api';
+import api from "../../services/api";
 
-import Loading from '../../components/Loading';
-import FormResult from '../../components/FormResult';
-import Capitals from '../../components/Capitals';
+import Loading from "../../components/Loading";
+import FormResult from "../../components/FormResult";
+import Capitals from "../../components/Capitals";
 
 import {
   Container,
@@ -14,39 +14,39 @@ import {
   CapitalsWrapper,
   WhiteRow,
   SubmitButton,
-  Form,
-} from './styles';
+  Form
+} from "./styles";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
 
     this.VIEW_STATE_FORM_RESULT = {
-      RENDER_RESULT: 'success',
-      RENDER_ERROR: 'error',
-      NO_RENDER: null,
+      RENDER_RESULT: "success",
+      RENDER_ERROR: "error",
+      NO_RENDER: null
     };
 
     this.state = {
-      inputCity: '',
+      inputCity: "",
       loadingCity: false,
       viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER,
       cityData: {
         weather: {},
         forecast: {},
-        error: {},
+        error: {}
       },
       inputCapitals: [
-        { id: '3663517', city: 'Manaus' },
-        { id: '3448439', city: 'São Paulo' },
-        { id: '3451190', city: 'Rio de Janeiro' },
-        { id: '3469058', city: 'Brasilia' },
+        { id: "3663517", city: "Manaus" },
+        { id: "3448439", city: "São Paulo" },
+        { id: "3451190", city: "Rio de Janeiro" },
+        { id: "3469058", city: "Brasilia" }
       ],
       capitalsData: {
-        capitals: {},
-        error: {},
+        capitals: [],
+        error: false
       },
-      loadingCapitals: true,
+      loadingCapitals: true
     };
   }
 
@@ -63,38 +63,56 @@ export default class Main extends Component {
 
     try {
       const [weather, forecast] = await Promise.all([
-        api.get('/weather', {
+        api.get("/current", {
           params: {
-            q: inputCity,
-          },
+            city: inputCity
+          }
         }),
-        api.get('/forecast', {
+        api.get("/forecast/daily", {
           params: {
-            q: inputCity,
-          },
-        }),
+            city: inputCity
+          }
+        })
       ]);
 
-      this.setState({
-        cityData: {
-          error: {},
-          weather: { ...weather },
-          forecast: { ...forecast },
-        },
-        loadingCity: false,
-        inputCity: '',
-        viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_RESULT,
-      });
+      console.log(weather, forecast);
+
+      // When the city is not found, the API returns empty response with
+      // a 204 status code (No content). It is necessary to render an error
+      // Otherwise, assume it found the city, so render the result.
+      if (weather.status === 204 && forecast.status === 204) {
+        this.setState({
+          cityData: {
+            forecast: {},
+            weather: {},
+            error: { status: 404 }
+          },
+          loadingCity: false,
+          inputCity: "",
+          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR
+        });
+      } else {
+        this.setState({
+          cityData: {
+            error: {},
+            weather: weather.data,
+            forecast: forecast.data
+          },
+          loadingCity: false,
+          inputCity: "",
+          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_RESULT
+        });
+      }
     } catch (error) {
       this.setState({
         cityData: {
           forecast: {},
           weather: {},
-          error: { ...error.response },
+          error: { ...error.response }
         },
         loadingCity: false,
-        inputCity: '',
-        viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR,
+        inputCity: "",
+        viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR
       });
     }
   };
@@ -104,9 +122,9 @@ export default class Main extends Component {
       cityData: {
         weather: {},
         forecast: {},
-        error: {},
+        error: {}
       },
-      viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER,
+      viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER
     });
   };
 
@@ -118,25 +136,31 @@ export default class Main extends Component {
   fetchCapitals = async () => {
     const { inputCapitals } = this.state;
 
-    // Concatenate list of cities IDs separated by comma
-    const capitalIdList = inputCapitals.map(capital => capital.id).join(',');
-
     try {
-      const response = await api.get('/group', {
-        params: {
-          id: capitalIdList,
-        },
-      });
+      const responseCapitals = await Promise.all(
+        inputCapitals.map(async capital => {
+          const response = await api.get("/forecast/daily", {
+            params: {
+              city_id: capital.id
+            }
+          });
+
+          return response;
+        })
+      );
+
+      console.log(responseCapitals);
 
       this.setState({
-        capitalsData: { ...response },
-        loadingCapitals: false,
+        capitalsData: { capitals: responseCapitals, error: false },
+        loadingCapitals: false
       });
     } catch (error) {
-      // Reponse outside 2xx range
+      console.log({ ...error });
+
       this.setState({
-        capitalsData: { ...error },
-        loadingCapitals: false,
+        capitalsData: { capitals: [], error: true },
+        loadingCapitals: false
       });
     }
   };
@@ -153,8 +177,10 @@ export default class Main extends Component {
       viewFormResult,
       cityData,
       capitalsData,
-      loadingCapitals,
+      loadingCapitals
     } = this.state;
+
+    console.log(cityData);
 
     return (
       <Container isSmallTitle={viewFormResult}>
@@ -198,7 +224,7 @@ export default class Main extends Component {
             <Loading />
           ) : (
             <Capitals
-              capitals={capitalsData}
+              capitalsData={capitalsData}
               handleRetryButton={this.handleRetryButton}
             />
           )}
