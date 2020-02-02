@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import {
   parseISO,
-  getHours,
   getISODay,
   isAfter,
   startOfDay,
   differenceInDays,
-} from 'date-fns';
-import { IoMdClose, IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
+  isToday
+} from "date-fns";
+import { IoMdClose, IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 
 import {
   FormResultWrapper,
@@ -27,25 +27,29 @@ import {
   ForecastList,
   Day,
   ForecastItem,
-  DayTemperatureMinMax,
-} from './styles';
+  DayTemperatureMinMax
+} from "./styles";
 
-import { ErrorWrapper, ErrorMessage, ErrorTip } from '../Errors';
+import { ErrorWrapper, ErrorMessage, ErrorTip } from "../Errors";
 
 /** Convert metter/sec to km/hour */
 const metterToKmSec = metterSec =>
   Math.round((metterSec * 3.6 + Number.EPSILON) * 100) / 100;
 
+const getTodayMinMaxTemperature = forecast => {
+  return forecast.data.filter(forecast => isToday(parseISO(forecast.datetime)));
+};
+
 const handleError = error => {
   const ERRORS = {
     NOT_FOUND: {
       code: 404,
-      message: 'Não foi possível localizar a cidade informada!',
+      message: "Não foi possível localizar a cidade informada!"
     },
     GENERIC_ERROR: {
       code: true,
-      message: 'Falha na requisição!',
-    },
+      message: "Falha na requisição!"
+    }
   };
   switch (error.status) {
     case ERRORS.NOT_FOUND.code:
@@ -73,14 +77,16 @@ const handleError = error => {
   }
 };
 
-function Weather({ weather }) {
+function Weather({ weather, forecast }) {
+  const minMaxTemperature = getTodayMinMaxTemperature(forecast);
+
   return (
     <CityWeather>
-      <City>{`${weather.data.name} - ${weather.data.sys.country}`}</City>
+      <City>{`${weather.data[0].city_name} - ${weather.data[0].country_code}`}</City>
 
       <CurrentWeather>
-        <span>{`${Math.round(weather.data.main.temp)}°C`}</span>
-        <span>{weather.data.weather[0].description}</span>
+        <span>{`${Math.round(weather.data[0].temp)}°C`}</span>
+        <span>{weather.data[0].weather.description}</span>
       </CurrentWeather>
 
       <AditionalInfo>
@@ -88,11 +94,11 @@ function Weather({ weather }) {
           <TemperatureMinMax>
             <div>
               <IoMdArrowDown />
-              <span>{`${Math.round(weather.data.main.temp_min)}°`}</span>
+              <span>{`${Math.round(minMaxTemperature[0].min_temp)}°`}</span>
             </div>
             <div>
               <IoMdArrowUp />
-              <span>{`${Math.round(weather.data.main.temp_max)}°`}</span>
+              <span>{`${Math.round(minMaxTemperature[0].max_temp)}°`}</span>
             </div>
           </TemperatureMinMax>
 
@@ -100,7 +106,7 @@ function Weather({ weather }) {
             <p>
               Vento
               <span>
-                {`${Math.round(metterToKmSec(weather.data.wind.speed))}km/h`}
+                {`${Math.round(metterToKmSec(weather.data[0].wind_spd))}km/h`}
               </span>
             </p>
           </Wind>
@@ -110,14 +116,14 @@ function Weather({ weather }) {
           <FeelsLike>
             <p>
               Sensação
-              <span>{`${Math.round(weather.data.main.feels_like)}°C`}</span>
+              <span>{`${Math.round(weather.data[0].app_temp)}°C`}</span>
             </p>
           </FeelsLike>
 
           <Humidity>
             <p>
               Humidade
-              <span>{`${Math.round(weather.data.main.humidity)}%`}</span>
+              <span>{`${Math.round(weather.data[0].rh)}%`}</span>
             </p>
           </Humidity>
         </ColumnBlock>
@@ -126,6 +132,9 @@ function Weather({ weather }) {
   );
 }
 
+/**
+ * Check if the forecast day is in the 5 days range
+ */
 const checkForecastRange = (currentDay, forecastDay, FORECAST_RANGE) =>
   differenceInDays(forecastDay, currentDay) <= FORECAST_RANGE;
 /**
@@ -140,44 +149,40 @@ const checkForecastRange = (currentDay, forecastDay, FORECAST_RANGE) =>
  * resulting in 4 forecasts days (or 5, depending on the current hour).
  */
 const processForecastData = forecast => {
-  // Use 12:00:00 UTC as default hour to show
-  const DEFAULT_HOUR = 12;
-
   // Forecast 4 days
-  const FORECAST_RANGE = 4;
+  const FORECAST_RANGE = 5;
 
   // Get current day
   const currentDay = startOfDay(new Date());
 
   // follow the getISODay format ( 1 for Monday, 7 for Sunday)
   const dayOfWeekMap = {
-    1: 'Segunda',
-    2: 'Terça',
-    3: 'Quarta',
-    4: 'Quinta',
-    5: 'Sexta',
-    6: 'Sábado',
-    7: 'Domingo',
+    1: "Segunda",
+    2: "Terça",
+    3: "Quarta",
+    4: "Quinta",
+    5: "Sexta",
+    6: "Sábado",
+    7: "Domingo"
   };
 
-  return forecast.data.list
+  return forecast.data
     .filter(
       forecastDate =>
-        isAfter(startOfDay(parseISO(forecastDate.dt_txt)), currentDay) &&
-        getHours(parseISO(forecastDate.dt_txt)) === DEFAULT_HOUR &&
+        isAfter(startOfDay(parseISO(forecastDate.datetime)), currentDay) &&
         checkForecastRange(
           currentDay,
-          parseISO(forecastDate.dt_txt),
+          parseISO(forecastDate.datetime),
           FORECAST_RANGE
         )
     )
     .map(forecastDate => {
       return (
-        <ForecastItem key={forecastDate.dt_txt}>
-          <Day>{dayOfWeekMap[getISODay(parseISO(forecastDate.dt_txt))]}</Day>
+        <ForecastItem key={forecastDate.datetime}>
+          <Day>{dayOfWeekMap[getISODay(parseISO(forecastDate.datetime))]}</Day>
           <DayTemperatureMinMax>
-            <span>{`${Math.round(forecastDate.main.temp_min)}°`}</span>
-            <span>{`${Math.round(forecastDate.main.temp_max)}°`}</span>
+            <span>{`${Math.round(forecastDate.min_temp)}°`}</span>
+            <span>{`${Math.round(forecastDate.max_temp)}°`}</span>
           </DayTemperatureMinMax>
         </ForecastItem>
       );
@@ -193,7 +198,7 @@ function CityInfo({ handleCloseButton, weather, forecast }) {
     <>
       <CityResult>
         <WrapperResult>
-          <Weather weather={weather} />
+          <Weather weather={weather} forecast={forecast} />
           <CloseButton onClick={handleCloseButton}>
             <IoMdClose />
           </CloseButton>
@@ -211,7 +216,7 @@ function FormResult({
   handleCloseButton,
   viewFormResult,
   cityData,
-  VIEW_STATE_FORM_RESULT,
+  VIEW_STATE_FORM_RESULT
 }) {
   const { weather, forecast, error } = cityData;
 

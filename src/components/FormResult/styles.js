@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FormResultWrapper = styled.div`
   background: #fff3e4;
@@ -37,7 +37,7 @@ export const WrapperResult = styled.div`
 `;
 
 export const CloseButton = styled.button.attrs({
-  type: 'button',
+  type: "button"
 })`
   border: 0;
   background: none;
@@ -216,6 +216,12 @@ export const ForecastItem = styled.li`
 
   & + li {
     margin-left: 24px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    :last-child {
+      display: none;
+    }
   }
 `;
 
