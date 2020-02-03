@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   parseISO,
   getISODay,
   isAfter,
   startOfDay,
   differenceInDays,
-  isToday
-} from "date-fns";
-import { IoMdClose, IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
+  isToday,
+} from 'date-fns';
+import { IoMdClose, IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
 
 import {
   FormResultWrapper,
@@ -27,29 +27,31 @@ import {
   ForecastList,
   Day,
   ForecastItem,
-  DayTemperatureMinMax
-} from "./styles";
+  DayTemperatureMinMax,
+} from './styles';
 
-import { ErrorWrapper, ErrorMessage, ErrorTip } from "../Errors";
+import { ErrorWrapper, ErrorMessage, ErrorTip } from '../Errors';
 
 /** Convert metter/sec to km/hour */
 const metterToKmSec = metterSec =>
   Math.round((metterSec * 3.6 + Number.EPSILON) * 100) / 100;
 
 const getTodayMinMaxTemperature = forecast => {
-  return forecast.data.filter(forecast => isToday(parseISO(forecast.datetime)));
+  return forecast.data.filter(forecastDay =>
+    isToday(parseISO(forecastDay.datetime))
+  );
 };
 
 const handleError = error => {
   const ERRORS = {
     NOT_FOUND: {
       code: 404,
-      message: "Não foi possível localizar a cidade informada!"
+      message: 'Não foi possível localizar a cidade informada!',
     },
     GENERIC_ERROR: {
       code: true,
-      message: "Falha na requisição!"
-    }
+      message: 'Falha na requisição!',
+    },
   };
   switch (error.status) {
     case ERRORS.NOT_FOUND.code:
@@ -157,13 +159,13 @@ const processForecastData = forecast => {
 
   // follow the getISODay format ( 1 for Monday, 7 for Sunday)
   const dayOfWeekMap = {
-    1: "Segunda",
-    2: "Terça",
-    3: "Quarta",
-    4: "Quinta",
-    5: "Sexta",
-    6: "Sábado",
-    7: "Domingo"
+    1: 'Segunda',
+    2: 'Terça',
+    3: 'Quarta',
+    4: 'Quinta',
+    5: 'Sexta',
+    6: 'Sábado',
+    7: 'Domingo',
   };
 
   return forecast.data
@@ -216,7 +218,7 @@ function FormResult({
   handleCloseButton,
   viewFormResult,
   cityData,
-  VIEW_STATE_FORM_RESULT
+  VIEW_STATE_FORM_RESULT,
 }) {
   const { weather, forecast, error } = cityData;
 

@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import { IoMdRefresh } from "react-icons/io";
+import { IoMdRefresh } from 'react-icons/io';
 
-import { ErrorWrapper, ErrorMessage } from "../Errors";
+import { ErrorWrapper, ErrorMessage } from '../Errors';
 
-import { CapitalsResults, List, RetryButton } from "./styles";
+import { CapitalsResults, List, RetryButton } from './styles';
 
 const splitCapitals = capitalsList => {
   const halfwayThrough = Math.floor(capitalsList.length / 2);
 
   return [
     capitalsList.slice(0, halfwayThrough),
-    capitalsList.slice(halfwayThrough, capitalsList.length)
+    capitalsList.slice(halfwayThrough, capitalsList.length),
   ];
 };
 
@@ -25,9 +25,8 @@ function ListTitle() {
 }
 
 function ListItems({ halfCapitals }) {
-  console.log(halfCapitals);
-  return halfCapitals.map((capital, index) => (
-    <li key={index}>
+  return halfCapitals.map(capital => (
+    <li key={capital.data.city_name}>
       {capital.status === 200 ? (
         <>
           <span>{`${Math.round(capital.data.data[0].min_temp)}°`}</span>
@@ -35,8 +34,8 @@ function ListItems({ halfCapitals }) {
         </>
       ) : (
         <>
-          <span>{`--`}</span>
-          <span>{`--`}</span>
+          <span>--</span>
+          <span>--</span>
         </>
       )}
       <p>{capital.data.city_name}</p>

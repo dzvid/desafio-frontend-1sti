@@ -1,49 +1,241 @@
-# Desafio-Frontend
+<!--
+*** Thanks for checking out this README Template. If you have a suggestion that would
+*** make this better, please fork the repo and create a pull request or simply open
+*** an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/1sti-transformacao.png)
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-## Bem-vindo
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-A 1STi é uma consultoria em tecnologias digitais emergentes que tem a missão de aproximar a tecnologia das reais necessidades sociais. Nós enxergamos a tecnologia como um presente à humanidade dado pela expressão de nosso próprio intelecto, realizando uma síntese entre arte, humanidade e ciência.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/tukno/desafio-frontend-1sti">
+    <img src="images/logo.svg" alt="Logo" width="80" height="80">
+  </a>
 
-Nosso modelo de negócios combina projetos de valor compartilhado com consultoria nas tecnologias mais avançadas. Esse desafio é uma oportunidade para fazer parte do nosso time em uma jornada de aprendizado e desenvolvimento de interfaces web!
+  <h3 align="center">Weather App</h3>
 
-## Aprendizado e desenvolvimento
+  <p align="center">
+    Need to check the current weather in some city? Ok, I can help you!
+    <br />
+    <a href="https://github.com/tukno/desafio-frontend-1sti"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://tukno-weather-app.netlify.com/">View Demo</a>
+    ·
+    <a href="https://github.com/tukno/desafio-frontend-1sti/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/tukno/desafio-frontend-1sti/issues">Request Feature</a>
+  </p>
+</p>
 
-Você pode esperar um trabalho intenso em projetos HTML5/CSS3 com o framework React, do facebook, e boas práticas em Redux, um mecanismo de gerenciamento de estado de aplicações, além de diversos componentes javascript. 
+<!-- TABLE OF CONTENTS -->
 
-O aprendizado se dá através de projetos reais, na construção de sites e aplicações que ajudem causas sociais de impacto. Conforme a evolução, serão feitas transições para projetos de consultoria em ambientes de negócio complexos. Temos o suporte de vídeo aulas em inglês para apoiar os estudos e montamos um plano individual em conjunto.
+## Table of Contents
 
-O trabalho é home office, com carga horária de 6 horas por dia e comunicação intensa via slack e sala de vídeo no appear. Espere uma equipe engajada e ideológica, mas muito mão na massa e com sólidos princípios de arquitetura de aplicações web.
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
 
-O valor da bolsa de estágio por 01 ano é de R$ 1.000,00/mês.
-Serão dois selecionados e apos o desafio técnico teremos conversas por skype, mas fique à vontade para já ir nos conhecendo no slack.
+<!-- ABOUT THE PROJECT -->
 
-## Como participar
+## About The Project
 
-* Crie um novo fork e branch com seu nome-sobrenome e faça um pull request quando estiver pronto. Iremos fazer code review.
-* Envie um email para ola@1sti.com.br para te adicionarmos ao time slack do desafio.
+**WEB:**
 
-## O desafio
+[![Weather app][product-screenshot-desktop-1]](https://tukno-weather-app.netlify.com)
 
-Vamos dar uma olhada na previsão do tempo? A meta é criarmos uma página simples, que consuma a API do Yahoo de previsão do tempo (https://developer.yahoo.com/weather/). O layout final deverá ficar o mais próximo possível da versão abaixo (sim, vamos ter a versão responsiva mobile e a versão desktop):
+[![Weather app][product-screenshot-desktop-2]](https://tukno-weather-app.netlify.com)
 
-Web:
+**MOBILE:**
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/desafio-desktop1.png)
+[![Weather app][product-screenshot-mobile-1]](https://tukno-weather-app.netlify.com)
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/desafio-desktop2.png)
+[![Weather app][product-screenshot-mobile-2]](https://tukno-weather-app.netlify.com)
 
-Mobile responsivo:
+This application allows a user to:
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/desafio-mobile1.png)
+- Search informations about the weather of a given city, returning the following informations:
+  - Current temperature;
+  - Weather conditions;
+  - Maximum and minimum temperature for the day;
+  - Apparent/"Feels Like" temperature;
+  - Wind speed;
+  - Relative humidity;
+  - Five days temperature forecast for the current city (4 days in mobile mode);
+- Show the maximum and minimum temperature for the capitals in Brazil (due to the API's limitations only 4 capitals were listed).
 
-![alt tag](https://s3-us-west-1.amazonaws.com/1sti/desafio-mobile2.png)
+### Built With
 
-## Dicas
+Main libraries and CLI tools used to built the project:
 
-* Tudo bem, até pode usar jquery. Se você não quiser usar (bônus), uma sugestão: Axios para a comunicação com a API.
-* HTML o mais semântico possível.
-* Branches com readme e instruções de implantação serão bem vindos.
-* Pré-processadores CSS como Stylus ou LESS também.
-* Que tal utilizar BEM nos identificadores css? http://getbem.com/naming/ 
+- [Axios](https://github.com/axios/axios)
+- [Create react app](https://github.com/facebook/create-react-app)
+- [Date-fns](https://github.com/date-fns/date-fns)
+- [React](https://github.com/facebook/react)
+- [React icons](https://github.com/react-icons/react-icons)
+- [Styled components](https://github.com/styled-components/styled-components)
+
+To manage the code style and formatting:
+
+- [ESLint](https://github.com/eslint/eslint)
+- [Prettier](https://github.com/prettier/prettier)
+- [EditorConfig](https://editorconfig.org/)
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+To get a local copy up and running follow these steps.
+
+### Prerequisites
+
+Install NodeJS:
+
+- [node](https://nodejs.org/en/)
+
+Install a package manager:
+
+- [yarn](https://classic.yarnpkg.com/lang/en/): Yarn 1.x (classic) was used in this project.
+
+or
+
+- npm
+
+```sh
+npm install npm@latest -g
+```
+
+### Installation
+
+1. Create an account and get a free API Key at [https://www.weatherbit.io/](https://www.weatherbit.io/)
+
+2. Clone the repository:
+
+```sh
+Using ssh:
+git clone git@github.com:tukno/desafio-frontend-1sti.git
+
+Or using https:
+git clone https://github.com/tukno/desafio-frontend-1sti.git
+```
+
+3. Install the project dependencies:
+
+```sh
+cd desafio-frontend-1sti
+
+yarn
+```
+
+or using npm:
+
+```sh
+cd desafio-frontend-1sti
+
+npm install
+```
+
+4. Enter your API key in `src/services/api.js` file:
+
+```JS
+config.params.key = '';
+```
+
+PS: The current value in the code is for my free account. I dont have a problem exposing the API key because it uses the free service which is limited to 500 requests/day and is intended for hobby/testing purposes. If you want to build this using a paid API key, it is necessary to hide the API key value, one approach can be making the requests to the weather API through a backend service.
+
+Also I have not used environment variables to store the API key because it is just a simple project (KISS principle).
+
+5. You are done with configuration and ready to code! (I hope so :tada:).
+
+<!-- USAGE EXAMPLES -->
+
+<!-- ## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_ -->
+
+<!-- ROADMAP -->
+
+<!-- ## Roadmap
+
+See the [open issues](https://github.com/tukno/desafio-frontend-1sti/issues) for a list of proposed features (and known issues). -->
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+
+## Contact
+
+David Oliveira - oliveiradavid.dev@gmail.com
+
+Project Link: [https://github.com/tukno/desafio-frontend-1sti](https://github.com/tukno/desafio-frontend-1sti)
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## Acknowledgements
+
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+- [Choose an Open Source License](https://choosealicense.com)
+- [Img Shields](https://shields.io)
+- [Icons for free](https://icons-for-free.com/)
+- [1STI challenge description](https://github.com/1STi/desafio-frontend/): If it is not accessible, theres a copy in the [README.orig.md](README.orig.md) file.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/tukno/desafio-frontend-1sti.svg?style=flat-square
+[contributors-url]: https://github.com/tukno/desafio-frontend-1sti/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/tukno/desafio-frontend-1sti.svg?style=flat-square
+[forks-url]: https://github.com/tukno/desafio-frontend-1sti/network/members
+[stars-shield]: https://img.shields.io/github/stars/tukno/desafio-frontend-1sti.svg?style=flat-square
+[stars-url]: https://github.com/tukno/desafio-frontend-1sti/stargazers
+[issues-shield]: https://img.shields.io/github/issues/tukno/desafio-frontend-1sti.svg?style=flat-square
+[issues-url]: https://github.com/tukno/desafio-frontend-1sti/issues
+[license-shield]: https://img.shields.io/github/license/tukno/desafio-frontend-1sti.svg?style=flat-square
+[license-url]: https://github.com/tukno/desafio-frontend-1sti/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/tukno
+[product-screenshot-desktop-1]: images/preview-desktop-1.png
+[product-screenshot-desktop-2]: images/preview-desktop-2.png
+[product-screenshot-mobile-1]: images/preview-mobile-1.png
+[product-screenshot-mobile-2]: images/preview-mobile-2.png

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { IoMdSearch } from "react-icons/io";
+import { IoMdSearch } from 'react-icons/io';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
-import Loading from "../../components/Loading";
-import FormResult from "../../components/FormResult";
-import Capitals from "../../components/Capitals";
+import Loading from '../../components/Loading';
+import FormResult from '../../components/FormResult';
+import Capitals from '../../components/Capitals';
 
 import {
   Container,
@@ -14,39 +14,39 @@ import {
   CapitalsWrapper,
   WhiteRow,
   SubmitButton,
-  Form
-} from "./styles";
+  Form,
+} from './styles';
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
 
     this.VIEW_STATE_FORM_RESULT = {
-      RENDER_RESULT: "success",
-      RENDER_ERROR: "error",
-      NO_RENDER: null
+      RENDER_RESULT: 'success',
+      RENDER_ERROR: 'error',
+      NO_RENDER: null,
     };
 
     this.state = {
-      inputCity: "",
+      inputCity: '',
       loadingCity: false,
       viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER,
       cityData: {
         weather: {},
         forecast: {},
-        error: {}
+        error: {},
       },
       inputCapitals: [
-        { id: "3663517", city: "Manaus" },
-        { id: "3448439", city: "São Paulo" },
-        { id: "3451190", city: "Rio de Janeiro" },
-        { id: "3469058", city: "Brasilia" }
+        { id: '3663517', city: 'Manaus' },
+        { id: '3448439', city: 'São Paulo' },
+        { id: '3451190', city: 'Rio de Janeiro' },
+        { id: '3469058', city: 'Brasilia' },
       ],
       capitalsData: {
         capitals: [],
-        error: false
+        error: false,
       },
-      loadingCapitals: true
+      loadingCapitals: true,
     };
   }
 
@@ -63,16 +63,16 @@ export default class Main extends Component {
 
     try {
       const [weather, forecast] = await Promise.all([
-        api.get("/current", {
+        api.get('/current', {
           params: {
-            city: inputCity
-          }
+            city: inputCity,
+          },
         }),
-        api.get("/forecast/daily", {
+        api.get('/forecast/daily', {
           params: {
-            city: inputCity
-          }
-        })
+            city: inputCity,
+          },
+        }),
       ]);
 
       console.log(weather, forecast);
@@ -85,22 +85,22 @@ export default class Main extends Component {
           cityData: {
             forecast: {},
             weather: {},
-            error: { status: 404 }
+            error: { status: 404 },
           },
           loadingCity: false,
-          inputCity: "",
-          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR
+          inputCity: '',
+          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR,
         });
       } else {
         this.setState({
           cityData: {
             error: {},
             weather: weather.data,
-            forecast: forecast.data
+            forecast: forecast.data,
           },
           loadingCity: false,
-          inputCity: "",
-          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_RESULT
+          inputCity: '',
+          viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_RESULT,
         });
       }
     } catch (error) {
@@ -108,11 +108,11 @@ export default class Main extends Component {
         cityData: {
           forecast: {},
           weather: {},
-          error: { ...error.response }
+          error: { ...error.response },
         },
         loadingCity: false,
-        inputCity: "",
-        viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR
+        inputCity: '',
+        viewFormResult: this.VIEW_STATE_FORM_RESULT.RENDER_ERROR,
       });
     }
   };
@@ -122,9 +122,9 @@ export default class Main extends Component {
       cityData: {
         weather: {},
         forecast: {},
-        error: {}
+        error: {},
       },
-      viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER
+      viewFormResult: this.VIEW_STATE_FORM_RESULT.NO_RENDER,
     });
   };
 
@@ -139,10 +139,10 @@ export default class Main extends Component {
     try {
       const responseCapitals = await Promise.all(
         inputCapitals.map(async capital => {
-          const response = await api.get("/forecast/daily", {
+          const response = await api.get('/forecast/daily', {
             params: {
-              city_id: capital.id
-            }
+              city_id: capital.id,
+            },
           });
 
           return response;
@@ -153,14 +153,14 @@ export default class Main extends Component {
 
       this.setState({
         capitalsData: { capitals: responseCapitals, error: false },
-        loadingCapitals: false
+        loadingCapitals: false,
       });
     } catch (error) {
       console.log({ ...error });
 
       this.setState({
         capitalsData: { capitals: [], error: true },
-        loadingCapitals: false
+        loadingCapitals: false,
       });
     }
   };
@@ -177,7 +177,7 @@ export default class Main extends Component {
       viewFormResult,
       cityData,
       capitalsData,
-      loadingCapitals
+      loadingCapitals,
     } = this.state;
 
     console.log(cityData);
