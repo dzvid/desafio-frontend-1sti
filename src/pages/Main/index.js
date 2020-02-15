@@ -75,8 +75,6 @@ export default class Main extends Component {
         }),
       ]);
 
-      console.log(weather, forecast);
-
       // When the city is not found, the API returns empty response with
       // a 204 status code (No content). It is necessary to render an error
       // Otherwise, assume it found the city, so render the result.
@@ -149,15 +147,11 @@ export default class Main extends Component {
         })
       );
 
-      console.log(responseCapitals);
-
       this.setState({
         capitalsData: { capitals: responseCapitals, error: false },
         loadingCapitals: false,
       });
     } catch (error) {
-      console.log({ ...error });
-
       this.setState({
         capitalsData: { capitals: [], error: true },
         loadingCapitals: false,
@@ -179,8 +173,6 @@ export default class Main extends Component {
       capitalsData,
       loadingCapitals,
     } = this.state;
-
-    console.log(cityData);
 
     return (
       <Container isSmallTitle={viewFormResult}>
