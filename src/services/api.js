@@ -9,7 +9,7 @@ const api = axios.create({
 // that allows to set default params in axios.create()
 api.interceptors.request.use(config => {
   config.params = config.params || {};
-  config.params.key = 'c3f2386af8424b19a51d8f67ca2b92f7';
+  config.params.key = '5f862d251b8e44d7a73aad53eac7d48a';
   config.params.lang = 'pt';
   config.params.units = 'M';
 
