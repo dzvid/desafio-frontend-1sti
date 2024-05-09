@@ -36,7 +36,7 @@
     <a href="https://github.com/dzvid/desafio-frontend-1sti"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://dzvid-weather-app.netlify.com/">View Demo</a>
+    <a href="https://https://dzvid-weather-app.netlify.app//">View Demo</a>
     ·
     <a href="https://github.com/dzvid/desafio-frontend-1sti/issues">Report Bug</a>
     ·
@@ -65,15 +65,15 @@
 
 **WEB:**
 
-[![Weather app][product-screenshot-desktop-1]](https://dzvid-weather-app.netlify.com)
+[![Weather app][product-screenshot-desktop-1]](https://https://dzvid-weather-app.netlify.app/)
 
-[![Weather app][product-screenshot-desktop-2]](https://dzvid-weather-app.netlify.com)
+[![Weather app][product-screenshot-desktop-2]](https://https://dzvid-weather-app.netlify.app/)
 
 **MOBILE:**
 
-[![Weather app][product-screenshot-mobile-1]](https://dzvid-weather-app.netlify.com)
+[![Weather app][product-screenshot-mobile-1]](https://https://dzvid-weather-app.netlify.app/)
 
-[![Weather app][product-screenshot-mobile-2]](https://dzvid-weather-app.netlify.com)
+[![Weather app][product-screenshot-mobile-2]](https://https://dzvid-weather-app.netlify.app/)
 
 This application allows a user to:
 
