@@ -24,7 +24,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/tukno/desafio-frontend-1sti">
+  <a href="https://github.com/dzvid/desafio-frontend-1sti">
     <img src="images/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -33,14 +33,14 @@
   <p align="center">
     Need to check the current weather in some city? Ok, I can help you!
     <br />
-    <a href="https://github.com/tukno/desafio-frontend-1sti"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dzvid/desafio-frontend-1sti"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://tukno-weather-app.netlify.com/">View Demo</a>
+    <a href="https://dzvid-weather-app.netlify.com/">View Demo</a>
     ·
-    <a href="https://github.com/tukno/desafio-frontend-1sti/issues">Report Bug</a>
+    <a href="https://github.com/dzvid/desafio-frontend-1sti/issues">Report Bug</a>
     ·
-    <a href="https://github.com/tukno/desafio-frontend-1sti/issues">Request Feature</a>
+    <a href="https://github.com/dzvid/desafio-frontend-1sti/issues">Request Feature</a>
   </p>
 </p>
 
@@ -65,15 +65,15 @@
 
 **WEB:**
 
-[![Weather app][product-screenshot-desktop-1]](https://tukno-weather-app.netlify.com)
+[![Weather app][product-screenshot-desktop-1]](https://dzvid-weather-app.netlify.com)
 
-[![Weather app][product-screenshot-desktop-2]](https://tukno-weather-app.netlify.com)
+[![Weather app][product-screenshot-desktop-2]](https://dzvid-weather-app.netlify.com)
 
 **MOBILE:**
 
-[![Weather app][product-screenshot-mobile-1]](https://tukno-weather-app.netlify.com)
+[![Weather app][product-screenshot-mobile-1]](https://dzvid-weather-app.netlify.com)
 
-[![Weather app][product-screenshot-mobile-2]](https://tukno-weather-app.netlify.com)
+[![Weather app][product-screenshot-mobile-2]](https://dzvid-weather-app.netlify.com)
 
 This application allows a user to:
 
@@ -136,10 +136,10 @@ npm install npm@latest -g
 
 ```sh
 Using ssh:
-git clone git@github.com:tukno/desafio-frontend-1sti.git
+git clone git@github.com:dzvid/desafio-frontend-1sti.git
 
 Or using https:
-git clone https://github.com/tukno/desafio-frontend-1sti.git
+git clone https://github.com/dzvid/desafio-frontend-1sti.git
 ```
 
 3. Install the project dependencies:
@@ -182,7 +182,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 
 <!-- ## Roadmap
 
-See the [open issues](https://github.com/tukno/desafio-frontend-1sti/issues) for a list of proposed features (and known issues). -->
+See the [open issues](https://github.com/dzvid/desafio-frontend-1sti/issues) for a list of proposed features (and known issues). -->
 
 <!-- CONTRIBUTING -->
 
@@ -208,7 +208,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 David Oliveira - oliveiradavid.dev@gmail.com
 
-Project Link: [https://github.com/tukno/desafio-frontend-1sti](https://github.com/tukno/desafio-frontend-1sti)
+Project Link: [https://github.com/dzvid/desafio-frontend-1sti](https://github.com/dzvid/desafio-frontend-1sti)
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -223,18 +223,18 @@ Project Link: [https://github.com/tukno/desafio-frontend-1sti](https://github.co
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/tukno/desafio-frontend-1sti.svg?style=flat-square
-[contributors-url]: https://github.com/tukno/desafio-frontend-1sti/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/tukno/desafio-frontend-1sti.svg?style=flat-square
-[forks-url]: https://github.com/tukno/desafio-frontend-1sti/network/members
-[stars-shield]: https://img.shields.io/github/stars/tukno/desafio-frontend-1sti.svg?style=flat-square
-[stars-url]: https://github.com/tukno/desafio-frontend-1sti/stargazers
-[issues-shield]: https://img.shields.io/github/issues/tukno/desafio-frontend-1sti.svg?style=flat-square
-[issues-url]: https://github.com/tukno/desafio-frontend-1sti/issues
-[license-shield]: https://img.shields.io/github/license/tukno/desafio-frontend-1sti.svg?style=flat-square
-[license-url]: https://github.com/tukno/desafio-frontend-1sti/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/dzvid/desafio-frontend-1sti.svg?style=flat-square
+[contributors-url]: https://github.com/dzvid/desafio-frontend-1sti/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dzvid/desafio-frontend-1sti.svg?style=flat-square
+[forks-url]: https://github.com/dzvid/desafio-frontend-1sti/network/members
+[stars-shield]: https://img.shields.io/github/stars/dzvid/desafio-frontend-1sti.svg?style=flat-square
+[stars-url]: https://github.com/dzvid/desafio-frontend-1sti/stargazers
+[issues-shield]: https://img.shields.io/github/issues/dzvid/desafio-frontend-1sti.svg?style=flat-square
+[issues-url]: https://github.com/dzvid/desafio-frontend-1sti/issues
+[license-shield]: https://img.shields.io/github/license/dzvid/desafio-frontend-1sti.svg?style=flat-square
+[license-url]: https://github.com/dzvid/desafio-frontend-1sti/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/tukno
+[linkedin-url]: https://linkedin.com/in/dzvid
 [product-screenshot-desktop-1]: images/preview-desktop-1.png
 [product-screenshot-desktop-2]: images/preview-desktop-2.png
 [product-screenshot-mobile-1]: images/preview-mobile-1.png
