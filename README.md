@@ -112,7 +112,7 @@ To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
-Install NodeJS:
+Install NodeJS v14:
 
 - [node](https://nodejs.org/en/)
 
